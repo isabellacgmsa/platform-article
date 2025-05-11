@@ -1,5 +1,12 @@
 import { getAllArticles, saveArticles } from '@/lib/db';
 import { v4 as uuidv4 } from 'uuid';
+import { startScraperJob } from '@/lib/cron';
+
+let cronStarted = false;
+if (!cronStarted) {
+  startScraperJob();
+  cronStarted = true;
+}
 
 export default function handler(req, res) {
   if (req.method === 'GET') {
