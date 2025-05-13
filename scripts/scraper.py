@@ -9,7 +9,7 @@ def scrape_devto_articles():
     response = requests.get(url)
     
     if response.status_code != 200:
-        print(f"❌ Erro ao acessar {url}")
+        print(f"Erro ao acessar {url}")
         return []
 
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -37,10 +37,10 @@ def get_existing_articles():
         if response.status_code == 200:
             return response.json()
         else:
-            print(f"⚠️ Erro ao buscar artigos existentes: {response.status_code}")
+            print(f" Erro ao buscar artigos existentes: {response.status_code}")
             return []
     except Exception as e:
-        print(f"❌ Erro de conexão com API: {e}")
+        print(f"Erro de conexão com API: {e}")
         return []
 
 def send_to_api(article):
@@ -51,11 +51,11 @@ def send_to_api(article):
             data=json.dumps(article)
         )
         if response.status_code in [200, 201]:
-            print(f"✅ Enviado: {article['title']}")
+            print(f" Enviado: {article['title']}")
         else:
-            print(f"⚠️ Falha ao enviar {article['title']} (Status {response.status_code})")
+            print(f"Falha ao enviar {article['title']} (Status {response.status_code})")
     except Exception as e:
-        print(f"❌ Erro na requisição: {e}")
+        print(f"Erro na requisição: {e}")
 
 if __name__ == "__main__":
     scraped_articles = scrape_devto_articles()
@@ -67,4 +67,4 @@ if __name__ == "__main__":
         if article['url'] not in existing_urls:
             send_to_api(article)
         else:
-            print(f"🔁 Já existe: {article['title']}")
+            print(f"Já existe: {article['title']}")
