@@ -9,15 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/runtime": "^7.27.1",
     "next": "15.3.2",
     "node-cron": "^4.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "styled-components": "^6.1.18",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4"

@@ -1,30 +1,35 @@
-import { spawn } from 'child_process';
+import { exec } from 'child_process';
 import path from 'path';
 
 export default function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Only POST allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const scriptPath = path.join(process.cwd(), 'scripts', 'scraper.py');
+  const { source } = req.body;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  const scraperPath = path.join(process.cwd(), 'scripts', 'scraper.py');
 
-  const python = spawn('python', [scriptPath]);
-  let output = '';
-  let errorOutput = '';
+  exec(`python ${scraperPath} ${source} ${apiUrl}/api/articles`, 
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error('Scraper error:', error);
+        return res.status(500).json({ 
+          error: 'Scraper failed',
+          details: stderr 
+        });
+      }
 
-  python.stdout.on('data', (data) => {
-    output += data.toString();
-  });
-
-  python.stderr.on('data', (data) => {
-    errorOutput += data.toString();
-  });
-
-  python.on('close', (code) => {
-    if (code === 0) {
-      res.status(200).json({ message: 'Scraper executed successfully', output });
-    } else {
-      res.status(500).json({ message: 'Error running scraper', error: errorOutput });
+      try {
+        const result = JSON.parse(stdout);
+        return res.status(200).json(result);
+      } catch (parseError) {
+        console.error('Parse error:', parseError);
+        return res.status(500).json({
+          error: 'Invalid scraper output',
+          rawOutput: stdout
+        });
+      }
     }
-  });
+  );
 }
