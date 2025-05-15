@@ -74,7 +74,7 @@ export default function ArticleDetails({ article }) {
             )}
           </div>
 
-         {/* <footer className={styles.articleFooter}>
+          <footer className={styles.articleFooter}>
             <a 
               href={article.url} 
               target="_blank" 
@@ -83,7 +83,7 @@ export default function ArticleDetails({ article }) {
             >
               Acessar artigo original →
             </a>
-          </footer>*/}
+          </footer>
         </article>
       </main>
     </>

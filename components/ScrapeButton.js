@@ -22,12 +22,12 @@ export default function ScrapeButton({ onScrapeComplete }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to run scraper');
+        throw new Error(data.error || 'Falha ao executar o scraper');
       }
 
       setResult({
         success: true,
-        message: `Scraping completed from ${source}`,
+        message: `Busca finalizada na fonte: ${source}`,
         newArticles: data.newArticles,
         source: data.source
       });
@@ -37,8 +37,8 @@ export default function ScrapeButton({ onScrapeComplete }) {
     } catch (error) {
       setResult({
         success: false,
-        message: error.message,
-        details: error.details
+        message: 'Erro ao buscar artigos',
+        details: error.message
       });
     } finally {
       setIsLoading(false);
@@ -54,8 +54,9 @@ export default function ScrapeButton({ onScrapeComplete }) {
         className={styles.sourceSelect}
       >
         <option value="devto">DEV.to</option>
-        {/*<option value="hashnode">Hashnode</option>*/}
+        <option value="nodesource">Nodesource</option>
         <option value="medium">Medium</option>
+
       </select>
 
       <button
@@ -63,17 +64,27 @@ export default function ScrapeButton({ onScrapeComplete }) {
         disabled={isLoading}
         className={styles.scrapeButton}
       >
-        {isLoading ? 'Scraping...' : 'Scrape Articles'}
+        {isLoading ? 'Buscando artigos...' : 'Buscar artigos'}
       </button>
 
       {result && (
         <div className={result.success ? styles.scrapeSuccess : styles.scrapeError}>
-          <p><strong>{result.message}</strong></p>
-          {result.success && (
-            <p>New articles added: {result.newArticles}</p>
-          )}
-          {!result.success && result.details && (
-            <p>Details: {JSON.stringify(result.details)}</p>
+          {result.success ? (
+            <>
+              <p><strong>{result.message}</strong></p>
+              {result.newArticles > 0 ? (
+                <p>Novos artigos adicionados: {result.newArticles}</p>
+              ) : (
+                <p>Nenhum artigo novo foi encontrado.</p>
+              )}
+            </>
+          ) : (
+            <>
+              <p><strong>{result.message}</strong></p>
+              {result.details && (
+                <p>Detalhes: {result.details}</p>
+              )}
+            </>
           )}
         </div>
       )}

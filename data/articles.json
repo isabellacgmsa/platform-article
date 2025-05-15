@@ -1,43 +1,37 @@
 [
   {
-    "id": "64e70201-28aa-47b4-899f-4e398252af4b",
-    "title": "ESM vs CommonJS: History, Differences, and the Big Shift",
-    "summary": "In TESTE",
-    "url": "https://teste,com",
-    "source": "medium",
-    "createdAt": "2025-05-13T16:24:02.935913",
-    "updatedAt": "2025-05-13T19:49:40.854Z"
+    "id": "d487b8e4-9337-4a86-99e5-9e734b0f139e",
+    "title": "Getting Started with Node.js: A Step-by-Step Tutorial",
+    "summary": "Sem resumo",
+    "url": "https://dev.to/tpointtechadu/getting-started-with-nodejs-a-step-by-step-tutorial-4i7h",
+    "createdAt": "2025-05-15T17:11:39.718Z"
   },
   {
-    "id": "76085500-b35b-497f-ae6f-8da829079980",
-    "title": "Why I�m Not Ready to Abandon JavaScript for �Faster� Languages",
-    "summary": "Yash",
-    "url": "#",
-    "source": "medium",
-    "createdAt": "2025-05-13T16:24:02.936173"
+    "id": "cc160301-d246-4bad-91ee-22599e9bd0f2",
+    "title": "Integração Correios para Rastreamento de Entregas: Arquitetura Escalável com NestJS e Kafka",
+    "summary": "Sem resumo",
+    "url": "https://dev.to/h1bertobarbosa/integracao-correios-para-rastreamento-de-entregas-arquitetura-escalavel-com-nestjs-e-kafka-oj2",
+    "createdAt": "2025-05-15T17:11:39.731Z"
   },
   {
-    "id": "490d633c-2bed-48ad-a0b7-ed50d9e95849",
-    "title": "How Redis Supercharges a Node.js App by Cutting Latency",
-    "summary": "In",
-    "url": "#",
-    "source": "medium",
-    "createdAt": "2025-05-13T16:24:02.936469"
+    "id": "c72bd6cb-229b-4fc2-bed6-243906f724e5",
+    "title": "Node.js Tutorial 2025: Learn Backend Development with JavaScript",
+    "summary": "Sem resumo",
+    "url": "https://dev.to/pythontutorial/nodejs-tutorial-2025-learn-backend-development-with-javascript-24l7",
+    "createdAt": "2025-05-15T17:11:39.759Z"
   },
   {
-    "id": "4f81ad99-27b2-4221-83df-48ade59772ff",
-    "title": "Let�s Be Serious About Node Dependency Injection.",
-    "summary": "Pierre G.",
-    "url": "#",
-    "source": "medium",
-    "createdAt": "2025-05-13T16:24:02.936714"
+    "id": "5d98cc88-6ce6-4dbe-be05-e71d34bd0feb",
+    "title": "Node.js exec vs. execSync: Choosing the Right Tool for Your Child Processes",
+    "summary": "Sem resumo",
+    "url": "https://dev.to/tene/nodejs-exec-vs-execsync-choosing-the-right-tool-for-your-child-processes-20n9",
+    "createdAt": "2025-05-15T17:11:39.773Z"
   },
   {
-    "id": "57058f1b-cc23-4f9c-8f6c-c5f6dee39bfa",
-    "title": "How To Build A Base Web Dev Template Repo",
-    "summary": "In",
-    "url": "#",
-    "source": "medium",
-    "createdAt": "2025-05-13T16:24:02.937010"
+    "id": "1d0f2480-e812-42e5-884d-4c7cd375a9cd",
+    "title": "Experimental Devvit Web Views",
+    "summary": "Sem resumo",
+    "url": "https://dev.to/besworks/experimental-devvit-web-views-5c15",
+    "createdAt": "2025-05-15T17:11:39.801Z"
   }
 ]

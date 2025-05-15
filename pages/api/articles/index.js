@@ -14,11 +14,28 @@ export default function handler(req, res) {
     return res.status(200).json(articles);
   }
 
-  if (req.method === 'POST') {
-    const { title, summary, url } = req.body;
+if (req.method === 'POST') {
+  // Aceita tanto um artigo único quanto um array
+  const incomingArticles = Array.isArray(req.body) ? req.body : [req.body];
+  
+  if (!incomingArticles.length) {
+    return res.status(400).json({ message: 'No articles provided' });
+  }
 
-    if (!title || !summary || !url) {
-      return res.status(400).json({ message: 'Missing fields' });
+  const articles = getAllArticles();
+  const newArticles = [];
+
+  for (const incomingArticle of incomingArticles) {
+    const { title, url, summary = 'Sem resumo', source = 'unknown', createdAt = new Date().toISOString() } = incomingArticle;
+
+    if (!title || !url) {
+      continue; // Pula artigos inválidos
+    }
+
+    // Verifica se o artigo já existe pela URL
+    const alreadyExists = articles.some(article => article.url === url);
+    if (alreadyExists) {
+      continue;
     }
 
     const newArticle = {
@@ -26,15 +43,28 @@ export default function handler(req, res) {
       title,
       summary,
       url,
-      createdAt: new Date().toISOString()
+      source,
+      createdAt
     };
 
-    const articles = getAllArticles();
     articles.push(newArticle);
-    saveArticles(articles);
-
-    return res.status(201).json(newArticle);
+    newArticles.push(newArticle);
   }
+
+  if (newArticles.length) {
+    saveArticles(articles);
+    return res.status(201).json({
+      message: `${newArticles.length} new articles added`,
+      newArticles,
+      totalArticles: articles.length
+    });
+  }
+
+  return res.status(200).json({
+    message: 'No new articles to add',
+    totalArticles: articles.length
+  });
+}
 
   res.status(405).end();
 }
